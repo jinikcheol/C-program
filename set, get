@@ -1,0 +1,172 @@
+3. set, get
+
+set, get 접근자 각각 속성을 읽거나, 새 값을 할당할 때 사용
+객체 지향 프로그래밍/ 정보 은닉을 위해 클래스 내부에서만 사용할 수 있도록 private로 접근을 제한 
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+	public class Myclass
+    {
+		private string name = "John";
+
+		public string Name
+        {
+			get
+            {
+				return name;
+
+            }
+            set
+            {
+				if (value.Length <5)
+					name = value;
+
+            }
+        }
+    }
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			Myclass mc = new Myclass();
+			Console.WriteLine("mc.Name:{0}", mc.Name);
+
+			mc.Name = "Breeeee";
+
+			Console.WriteLine("mc.Name: {0}", mc.Name);
+
+		}
+	}
+}
+
+
+4. 메소드 재정의
+
+private로 접근 범위가 제한된 메서드는 재정의 할 수 없음
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+	class Parent
+    {
+		public virtual void A()
+        {
+			Console.WriteLine("부모 클래스의 A() 메서드 호출!");
+        }
+    }
+	class Child : Parent
+    {
+        public override void A()
+        {
+			Console.WriteLine("자식 클래스(Child)의 A() 메서드 호출!");
+
+        }
+    }
+	class Daughter : Parent
+    {
+        public override void A()
+        {
+			Console.WriteLine("자식 클래스(Daughter)의 A() 메서드 호출!");
+
+        }
+    }
+	class Program
+	{
+		static void Main(string[] args)
+		{
+            Parent parent = new Parent();
+            parent.A();
+
+            Child child = new Child();
+            child.A();
+
+            Daughter daughter = new Daughter();
+            daughter.A();
+
+
+		}
+	}
+}
+
+
+5. 멤버 숨기기(new)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Parent
+    {
+        public int x = 100;
+        public void A()
+        {
+            Console.WriteLine("부모 클래스의 A() 메서드 호출!");
+        }
+    }
+
+    class Child : Parent
+    {
+        public new int x = 200;
+        public new void A()
+        {
+            Console.WriteLine("자식 클래스(Child)의 A() 메서드 호출!");
+        }
+    }
+	class Program
+	{
+		static void Main(string[] args)
+		{
+            Parent parent = new Parent();
+            parent.A();
+            Console.WriteLine("x :{0}", parent.x);
+
+            Child child = new Child();
+            child.A();
+
+            Console.WriteLine("x :{0}", child.x);
+
+
+        }
+	}
+}
+
+
+6. 업캐스팅과 다운캐스팅 (Upcasting and Downcasting)
+-다형성(polymorphism)
+하나의 객체가 여러 개의 형태를 가질 수 있는 능력
+
+업캐스팅이란 말 그대로 자식 클래스의 객체가 부모 클래스의 형태로 변환되는 것
+반대로, 다운캐스팅(downcasting)은 부모 클래스의 객체가 자식 클래스의 형태로 변환되는 것
+
+
+class Animal { }
+
+class Dog : Animal { }
+
+Dog dog = new Dog();
+Animal animal = dog; // 업캐스팅
+Dog sameDog = (Dog)animal; // 다운캐스팅
+
+
+
+class Animal { }
+
+class Dog : Animal { }
+
+Animal animal = new Animal();
+Dog dog = (Dog)animal; // InvalidCastException 예외 발생!
+
