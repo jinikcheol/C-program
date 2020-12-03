@@ -1,0 +1,43 @@
+2. 소멸자 (Destructor)
+
+class 클래스명{
+	~클래스명()
+	{
+		//
+	}
+	..
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Myclass
+    {
+        private string name;
+
+        public Myclass(string name)
+        {
+            this.name = name;
+            Console.WriteLine(name + "객체 생성!");
+        }
+        ~Myclass()
+        {
+            Console.WriteLine(name + "객체 소멸!");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Myclass ma = new Myclass("A");
+            Myclass mb = new Myclass("B");
+            Myclass mc = new Myclass("C");
+        }
+    }
+}
