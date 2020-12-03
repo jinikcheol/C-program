@@ -1,0 +1,138 @@
+1. 확장 메소드 (Extension Method)
+
+namespace 네임스페이스명
+{
+	public static class 클래스명
+	{
+		public static 반환형식 메소드명(this 확장대상형식 식별자, 매개변수..)
+		{
+			..
+		}
+		..
+	}
+}
+
+using System;
+using Extension;
+
+namespace Extension
+{
+    public static class ExtensionMethod
+    {
+        public static int Multiplication(this int var, int a, int b)
+        {
+            int result = var;
+
+            for (int i = 0; i < b; i++)
+                result *= a;
+
+            return result;
+
+        }
+    }
+}
+
+namespace Example
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("{0}", 8.Multiplication(2, 2));
+        }
+    }
+}
+
+
+2. 분할 클래스 (Partial Class)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Example
+{
+    partial class Nested
+    {
+        public void Test() { Console.WriteLine("Test()"); }
+    }
+    partial class Nested
+    {
+        public void Test2() { Console.WriteLine("Test2()"); }
+    }
+    partial class Nested
+    {
+        public void Test3() { Console.WriteLine("Test3()"); }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Nested nested = new Nested();
+            nested.Test();
+            nested.Test2();
+            nested.Test3();
+        }
+    }
+}
+
+3. 중첩 클래스 (Nested Class)
+-클래스 내에 또 클래스가 정의된 클래스
+
+class 클래스명
+{
+	class 클래스명
+	{
+		..
+	}
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplocaion1
+{
+    public class OuterClass
+    {
+        private int a = 70;
+
+        public class InnerClass
+        {
+            OuterClass instance;
+
+            public InnerClass(OuterClass a_instance)
+            {
+                instance = a_instance;
+            }
+
+            public void AccessVariable(int num)
+            {
+                this.instance.a = num;
+            }
+
+            public void ShowVariable()
+            {
+                Console.WriteLine("a:{0}", this.instance.a);
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            OuterClass outer = new OuterClass();
+            OuterClass.InnerClass inner = new OuterClass.InnerClass(outer);
+
+            inner.ShowVariable();
+            inner.AccessVariable(700);
+            inner.ShowVariable();
+        }
+    }
+
+
+    }
