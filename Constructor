@@ -1,0 +1,119 @@
+1. 생성자(Constructor)
+
+class 클래스명 {
+	[접근 저한자] 클래스명(매개변수..)
+	{
+		//
+	}
+	..
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Car
+    {
+        private int maxSpeed;
+        private int speed = 0;
+        private string model;
+
+        public Car(int maxSpeed, string model)
+        {
+            this.maxSpeed = maxSpeed;
+            this.model = model;
+
+        }
+
+        public void ShowCarInformation()
+        {
+            Console.WriteLine(model + "의 현재 속도: " + speed + "km/h, 촤대 속도: " + maxSpeed + "km/h");
+        }
+
+        public void speedUp(int increment)
+        {
+            if (speed + increment > maxSpeed)
+                Console.WriteLine("최대 속도" + maxSpeed + "km/h를 넘길 수 없습니다.");
+            else
+            {
+                speed += increment;
+                Console.WriteLine(model + "의 현재 속도는 " + speed + "km/h입니다.");
+
+            }
+        }
+
+        public void speedDown(int decrement)
+        {
+            if (speed - decrement < 0)
+                Console.WriteLine("속도는 0 아래로 떨어질 수 없습니다.");
+            else
+            {
+                speed -= decrement;
+                Console.WriteLine(model + "의 현재 속도는 " + speed + "km/h입니다.");
+
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Car car = new Car(325, "람보르기니 가야르도");
+
+            car.ShowCarInformation();
+            car.speedUp(50);
+            car.speedUp(40);
+            car.speedUp(210);
+            car.speedDown(70);
+        }
+    }
+}
+
+
+
+ 클래스명 객체명 = new 생성자;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Myclass
+    {
+        public Myclass()
+        {
+            Console.WriteLine("매개변수가 없는 디폴트 생성자");
+        }
+        public Myclass(int a)
+        {
+            Console.WriteLine("정수형 매개변수");
+
+        }
+        public Myclass(double b)
+        {
+            Console.WriteLine("실수형 매개변수");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Myclass ma = new Myclass();
+            Myclass mb = new Myclass(10);
+            Myclass mc = new Myclass(25.5);
+        }
+    }
+}
+
+
+
+
