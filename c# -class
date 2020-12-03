@@ -1,0 +1,23 @@
+class 
+
+[접근 제한자] class 클래스명
+{
+	//필드. 메소드...
+}
+
+
+기본 구조
+
+using System;
+
+namespace ConsoleApplication1
+{
+	class Program
+	{
+		static void Main(strig[] agrs)
+		{
+			Console.WriteLine("Hello, world!");
+		}
+	}
+}
+
